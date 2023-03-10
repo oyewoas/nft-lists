@@ -16,14 +16,14 @@ const PageContainer = styled(Box)({
   justifyContent: 'center',
   alignItems: 'center',
   backgroundColor: '#070e13'
+  
 })
 
 const PageContentContainer = styled(Box)(({ theme }) => ({
-  flex: '1 0 auto',
-  maxWidth: `calc(928px + 2 * ${theme.spacing(2)})`,
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
+  display: 'grid',
+  gridTemplateColumns: '1fr minmax(auto, 1028px) 1fr',
+  padding: '0 5%',
+
 }))
 
 const BaseTemplate = ({
