@@ -21,7 +21,7 @@ const PageContainer = styled(Box)({
 
 const PageContentContainer = styled(Box)(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '1fr minmax(auto, 1028px) 1fr',
+  gridTemplateColumns: '1fr minmax(auto, 1200px) 1fr',
   padding: '0 5%',
 
 }))
