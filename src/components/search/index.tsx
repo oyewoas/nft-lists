@@ -47,7 +47,6 @@ const isNftAddressValid = (address: string) => {
 const Search = () => {
   const { state } = useContext(DataContext);
   const { handleAddress, handleError, isLoading } = useNfts();
-
   const [nftAddress, setNftAddress] = useState<string>("");
   const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
 // useEffect(() => {

@@ -3,7 +3,8 @@ import { styled, Box } from '@mui/material'
 import NftCard from './card';
 import { useContext } from 'react';
 import { DataContext } from '../../provider/data-provider';
-
+import nftsRes from './nfts.json'
+import { TNft } from '../../config/alchemy';
 const NftListContainer = styled(Box)(({ theme }) => ({
   display: "grid",
   gridGap: theme.spacing(4),
@@ -13,26 +14,13 @@ const NftListContainer = styled(Box)(({ theme }) => ({
 const NftLists = () =>{
   const { state } = useContext(DataContext);
   // console.log(state, 'NFTSSSSSS')
+  const nfts = nftsRes.nfts
   return (
     
     <NftListContainer>
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-        <NftCard />
-
+       {nfts.map((nft: any, i) => {
+        return <NftCard data={nft} key={i} />
+       })}
     </NftListContainer>
 
   );
