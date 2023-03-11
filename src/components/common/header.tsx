@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from "@mui/material";
-import myImage from "../../images/alturalogo.png";
+import myImage from "../../assets/images/alturalogo.png";
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#070e13",
