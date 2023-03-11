@@ -5,7 +5,7 @@ export const isNftAddressValid = (address: string) => {
   return /^(0x)?[0-9a-fA-F]{40}$/.test(address);
 };
 const useNfts = () => {
-  const { dispatch } = useContext(DataContext);
+  const { dispatch, state } = useContext(DataContext);
   const [address, setAddress] = useState<string>("");
   const [gettingNfts, setGettingNfts] = useState(false);
   const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
@@ -37,7 +37,6 @@ const useNfts = () => {
         });
       setGettingNfts(false);
     } catch (error) {
-      console.error(error)
       handleError('Cannot find nfts, try again with valid address')
       setGettingNfts(false);
     }
@@ -54,6 +53,7 @@ const useNfts = () => {
     handleError,
     isLoading: gettingNfts,
     isValidAddress,
+    state,
   };
 };
 
