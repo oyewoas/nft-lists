@@ -1,4 +1,5 @@
 import { Box, Typography, styled } from "@mui/material";
+import myImage from "../../images/alturalogo.png";
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#070e13",
@@ -10,7 +11,9 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
 const AppHeader = () => {
   return (
     <HeaderContainer>
-      <Typography>NFT LIST</Typography>
+      <Typography 
+      fontWeight='bold'
+      ><img src={myImage} alt="logo" width='50' />NFT LISTS</Typography>
     </HeaderContainer>
   );
 };
