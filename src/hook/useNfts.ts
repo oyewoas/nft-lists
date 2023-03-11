@@ -8,8 +8,6 @@ const useNfts = () => {
   const [gettingNfts, setGettingNfts] = useState(false);
 
   const handleAddress = useCallback((address: string) => {
-    console.log('HERERERE -1')
-
     setAddress(address);
   }, []);
 
@@ -27,20 +25,14 @@ const useNfts = () => {
     setGettingNfts(true);
     try {
       const data = await getNfts(address);
-      console.log('HERERERE 0')
-
-      if (data.nfts.length > 0) {
-        console.log('HERERERE 1')
         dispatch({
           type: "SET_NFTS",
           payload: {
             ...data
           },
         });
-      }
       setGettingNfts(false);
     } catch (error) {
-      console.log(error)
       handleError('An error occured check if address is valid')
       setGettingNfts(false);
     }

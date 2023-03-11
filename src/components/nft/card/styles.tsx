@@ -1,17 +1,15 @@
 import {
-  styled,
-  CardMedia,
-  Typography,
-  CardContent,
-  Card,
-  Box,
-  keyframes
-} from "@mui/material";
-import { TNft } from "../../config/alchemy";
-const shadowSize = '5px';
-const shadowColor = 'rgba(35, 43, 57, 0.2)';
+    styled,
+    CardMedia,
+    Typography,
+    Card,
+    Box,
+    keyframes
+  } from "@mui/material";
+export const shadowSize = '5px';
+export const shadowColor = 'rgba(35, 43, 57, 0.2)';
 
-const boxShadow = `
+export const boxShadow = `
   0 ${shadowSize} ${shadowSize} ${shadowColor},
   0 ${shadowSize} ${shadowSize} ${shadowColor},
   0 ${shadowSize} ${shadowSize} ${shadowColor},
@@ -22,7 +20,7 @@ const boxShadow = `
   0 ${shadowSize} ${shadowSize} ${shadowColor}
 `;
 
-const hoverAnimation = keyframes`
+export const hoverAnimation = keyframes`
   0% {
     transform: scale(1);
     box-shadow: ${boxShadow};
@@ -36,7 +34,7 @@ const hoverAnimation = keyframes`
     box-shadow: ${boxShadow};
   }
 `;
-const CardContainer = styled(Card)({
+export const CardContainer = styled(Card)({
   padding: "0.75rem 0.75rem 1rem",
   borderRadius: "32px",
   cursor: "pointer",
@@ -48,7 +46,7 @@ const CardContainer = styled(Card)({
     animation: `${hoverAnimation} 0.8s ease-in-out forwards`
   }
 });
-const CardImage = styled(CardMedia)({
+export const CardImage = styled(CardMedia)({
   position: "relative",
   backgroundPosition: "center center",
   backgroundSize: "cover",
@@ -57,7 +55,7 @@ const CardImage = styled(CardMedia)({
   borderRadius: "24px",
 });
 
-const StyledTypography = styled(Typography)({
+export const StyledTypography = styled(Typography)({
   color: "#ffff",
   maxWidth: "100%",
   whiteSpace: "nowrap",
@@ -65,7 +63,7 @@ const StyledTypography = styled(Typography)({
   textOverflow: "ellipsis",
 });
 
-const StatusText = styled(Typography)(({ theme }) => ({
+export const StatusText = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1),
   fontWeight: "bold",
   borderRadius: theme.spacing(0.5),
@@ -77,34 +75,14 @@ const StatusText = styled(Typography)(({ theme }) => ({
   lineHeight: theme.spacing(1),
 }));
 
-const FloorText = styled(StatusText)({
+export const FloorText = styled(StatusText)({
   backgroundColor: "rgb(246 92 225/1)",
   color: "rgb(0 0 0/1)",
 });
 
-const FloorStatusContainer = styled(Box)(({ theme }) => ({
+export const FloorStatusContainer = styled(Box)(({ theme }) => ({
   margin: theme.spacing(1, 0),
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
 }));
-const NftCard = ({ data }: { data: TNft }) => {
-  return (
-    <CardContainer>
-      <CardImage image={data.contract.openSea?.imageUrl} title="nft-image" />
-      <CardContent>
-        <StyledTypography>
-          {data.contract.openSea?.collectionName}
-        </StyledTypography>
-        <FloorStatusContainer>
-          <FloorText>{data.contract.openSea?.floorPrice}</FloorText>
-          <StatusText>
-            {data.contract.openSea?.safelistRequestStatus}
-          </StatusText>
-        </FloorStatusContainer>
-      </CardContent>
-    </CardContainer>
-  );
-};
-
-export default NftCard;

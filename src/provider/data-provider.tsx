@@ -24,7 +24,7 @@ const reducer = (state: TState, action: Action) => {
     case 'SET_NFTS':
       return { ...state, ...action.payload, error: '' };
     case 'SET_ERROR':
-        return { ...state, error: action.payload.error};
+        return { ...state, ...action.payload};
     default:
       return state;
   }
