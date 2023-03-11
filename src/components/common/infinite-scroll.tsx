@@ -1,5 +1,5 @@
-import { CircularProgress } from '@mui/material';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Box, CircularProgress } from '@mui/material';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface InfiniteScrollProps<T> {
   data: T[];
@@ -50,7 +50,12 @@ const InfiniteScroll = <T, >({ data, threshold = 500, containerComponent: Contai
       {data.slice(0, page * 10).map((item, index) => (
         <React.Fragment key={index}>{children(item, index)}</React.Fragment>
       ))}
-      {loading && <CircularProgress />}
+      {loading && <Box 
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
+            alignItems='center'
+            ><CircularProgress /> </Box>}
       {!hasMore && <></>}
     </Container>
   );

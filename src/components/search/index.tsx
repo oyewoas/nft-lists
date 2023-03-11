@@ -1,6 +1,6 @@
 import { styled, Box, CircularProgress } from "@mui/material";
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import useNfts from "../../hook/useNfts";
+import useNfts, { isNftAddressValid } from "../../hook/useNfts";
 import { DataContext } from "../../provider/data-provider";
 
 const StyledForm = styled("form")(({ theme }) => ({
@@ -41,23 +41,15 @@ const StyledButton = styled("button")(({ theme }) => ({
 const ErrorText = styled("p")({
   color: "red",
 });
-const isNftAddressValid = (address: string) => {
-  return /^(0x)?[0-9a-fA-F]{40}$/.test(address);
-};
+
 const Search = () => {
   const { state } = useContext(DataContext);
-  const { handleAddress, handleError, isLoading } = useNfts();
+  const { handleAddress, handleError, isLoading, isValidAddress } = useNfts();
   const [nftAddress, setNftAddress] = useState<string>("");
-  const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
-// useEffect(() => {
-  //   handleAddress('0x60E4d786628Fea6478F785A6d7e704777c86a7c6')
-  // }, [])
+  //Test addresss 0x60E4d786628Fea6478F785A6d7e704777c86a7c6
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (isValidAddress) {
-        handleAddress(nftAddress);
-        console.log('herererererer')
-      }
+      handleAddress(nftAddress);
     }, 1000);
     return () => clearTimeout(delayDebounceFn);
   }, [handleAddress, isValidAddress, nftAddress]);
@@ -71,7 +63,6 @@ const Search = () => {
         handleError("");
       }
       setNftAddress(address);
-      setIsValidAddress(isNftAddressValid(address));
     },
     [handleError]
   );
@@ -84,7 +75,6 @@ const Search = () => {
     [handleAddress, nftAddress]
   );
 
-  console.log(isValidAddress)
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
@@ -96,7 +86,7 @@ const Search = () => {
             placeholder="Search nft by address..."
           />
           <StyledButton type="submit" disabled={!isValidAddress}>
-            {isLoading ? <CircularProgress /> : '🔍'}
+            {isLoading ? <CircularProgress size="20px" /> : "🔍"}
           </StyledButton>
         </InputContainer>
       </StyledForm>

@@ -1,15 +1,19 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { getNfts } from "../config/alchemy";
 import { DataContext } from "../provider/data-provider";
-
+export const isNftAddressValid = (address: string) => {
+  return /^(0x)?[0-9a-fA-F]{40}$/.test(address);
+};
 const useNfts = () => {
   const { dispatch } = useContext(DataContext);
   const [address, setAddress] = useState<string>("");
   const [gettingNfts, setGettingNfts] = useState(false);
+  const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
 
-  const handleAddress = useCallback((address: string) => {
+  const handleAddress = (address: string) => {
+    setIsValidAddress(isNftAddressValid(address));
     setAddress(address);
-  }, []);
+  };
 
   const handleError = useCallback((error: string) => {
     dispatch({
@@ -33,20 +37,23 @@ const useNfts = () => {
         });
       setGettingNfts(false);
     } catch (error) {
-      handleError('An error occured check if address is valid')
+      console.error(error)
+      handleError('Cannot find nfts, try again with valid address')
       setGettingNfts(false);
     }
   }, [address, dispatch, handleError]);
 
   useEffect(() => {
-    if(address.length > 0){
-      // getRes();
+    if(isValidAddress){
+      getRes();
     }
-  }, [address, dispatch, getRes]);
+  }, [address, dispatch, getRes, isValidAddress]);
+
   return {
     handleAddress,
     handleError,
     isLoading: gettingNfts,
+    isValidAddress,
   };
 };
 

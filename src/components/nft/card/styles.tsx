@@ -55,13 +55,13 @@ export const CardImage = styled(CardMedia)({
   borderRadius: "24px",
 });
 
-export const StyledTypography = styled(Typography)({
+export const StyledTypography = styled(Typography)(({ theme }) => ({
   color: "#ffff",
   maxWidth: "100%",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
+  wordWrap: 'break-word',
+  margin: theme.spacing(1, 0),
   textOverflow: "ellipsis",
-});
+}));
 
 export const StatusText = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -84,5 +84,6 @@ export const FloorStatusContainer = styled(Box)(({ theme }) => ({
   margin: theme.spacing(1, 0),
   display: "flex",
   flexDirection: "row",
+  width: '100%',
   justifyContent: "space-between",
 }));

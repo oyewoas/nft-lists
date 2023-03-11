@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './provider/data-provider';
 import { ThemeProvider } from '@mui/material'
 import { theme } from './themes/theme';
+import ErrorBoundary from './components/error-boundary';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
