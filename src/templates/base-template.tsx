@@ -4,6 +4,7 @@ import { Box, styled } from '@mui/material'
 type Props = {
   header?: React.ReactNode
   footer?: React.ReactNode
+  search?: React.ReactNode
   classes?: { content: string }
   children?: React.ReactNode
 }
@@ -31,11 +32,12 @@ const BaseTemplate = ({
   footer,
   header,
   classes,
+  search
 }: Props) => {
   return (
     <PageContainer>
       {header}
-
+      {search}
       <PageContentContainer className={classes?.content}>
         {children}
       </PageContentContainer>
